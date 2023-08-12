@@ -10,14 +10,14 @@
 	<h3>회원 수정</h3>
 
 	<form id='updateForm'>
-		<input type="hidden" name="uiNum" value="${userInfo.uiNum}"> <input
-			type=text name='uiId' placeholder='아이디' value='${userInfo.uiId}'><br />
+		<input type="hidden" name="uiNum" value="${user.uiNum}"> <input
+			type=text name='uiId' placeholder='아이디' value='${user.uiId}'><br />
 		<input type=text name='uiName' placeholder='이름'
-			value='${userInfo.uiName}'><br /> <input type=password
+			value='${user.uiName}'><br /> <input type=password
 			name='uiPwd' placeholder='비밀번호'><br />
-		<textarea name=uiDesc placeholder='소개'>${userInfo.uiDesc}</textarea>
+		<textarea name=uiDesc placeholder='소개'>${user.uiDesc}</textarea>
 		<br /> <input type=date name=uiBirth placeholder='생년월일'
-			value='${userInfo.uiBirth}'><br />
+			value='${user.uiBirth}'><br />
 		<button>수정</button>
 		<button type="reset">취소</button>
 	</form>
@@ -37,7 +37,7 @@
 				};
 
 				$.ajax({
-					url : '/user-info/update',
+					url : '/views/user-info/update',
 					type : 'POST',
 					data : JSON.stringify(formData),
 					contentType : 'application/json;charset=utf-8;',

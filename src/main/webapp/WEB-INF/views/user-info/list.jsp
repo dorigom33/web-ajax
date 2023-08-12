@@ -29,7 +29,7 @@
 			</tbody>
 			<tr>
 				<td colspan="5" align="right">
-					<button type="button" class="btn btn-primary" onclick="goPage('/user-info/insert')">등록</button>
+					<button type="button" class="btn btn-primary" onclick="goPage('/views/user-info/insert')">등록</button>
 				</td>
 			</tr>
 		</table>
@@ -58,7 +58,7 @@
                     for (const user of list) {
                         html += '<tr>';
                         html += '<td>' + user.uiNum + '</td>';
-                        html += '<td><a href="/user-info/view?uiNum=' + user.uiNum + '">' + user.uiName + '</a></td>';
+                        html += '<td><a href="/views/user-info/view?uiNum=' + user.uiNum + '">' + user.uiName + '</a></td>';
                         html += '<td>' + user.uiId + '</td>';
                         html += '<td>' + user.uiBirth + '</td>';
                         html += '<td>' + user.credat + '</td>';
