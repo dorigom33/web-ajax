@@ -3,12 +3,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시판</title>
 <jsp:include page="/WEB-INF/views/common/head.jsp"/> 
 </head>
 <body>
 	<div class="container">
-	
 		<h3>게시판</h3>
 		<select name="searchType" id="searchType">
 			<option value="1">이름</option>
@@ -29,52 +28,50 @@
 			<tbody id="tBody">
 			</tbody>
 			<tr>
-				<td colspan="4" align="right">
-					<button type="button" class="btn btn-primary" onclick="goPage('/board-info/insert')">등록</button>
+				<td colspan="5" align="right">
+					<button type="button" class="btn btn-primary" onclick="goPage('/user-info/insert')">등록</button>
 				</td>
 			</tr>
 		</table>
 	</div>
 <script>
-	function goPage(url){
-		location.href = url;
-	}
-	const loadFunc = function(){
-		const xhr = new XMLHttpRequest();
-		const searchStr = document.querySelector('#searchStr');
-		const searchType = document.querySelector('#searchType');
-		
-		let url = '/user-info/list?';
-		if(searchStr.value!==''){
-			url += 'searchType=' + searchType.value + '&searchStr=' + searchStr.value;
-		}
-		
-		xhr.open('GET',url);
-		xhr.onreadystatechange = function(){
-			if(xhr.readyState === 4){
-				if(xhr.status === 200){
-					const list = JSON.parse(xhr.responseText);
-					let html = '';
-					for(const user of list){
-						html += '<tr>';
-						html += '<td>' + user.uiNum + '</td>';
-						html += '<td><a href="/views/user-info/view?uiNum=' + user.uiNum + '">' + user.uiName + '</a></td>';
-						html += '<td>' + user.uiId + '</td>';
-						html += '<td>' + user.uiBirth + '</td>';
-						html += '<td>' + user.credat + '</td>';
-						html += '</tr>';
-					}
-					document.querySelector('#tBody').innerHTML = html;
-				}
-			}
-		}
-		xhr.send();
-	}
-	window.addEventListener('load',loadFunc);
+    function goPage(url) {
+        location.href = url;
+    }
+
+    const loadFunc = function() {
+        const xhr = new XMLHttpRequest();
+        const searchStr = document.querySelector('#searchStr');
+        const searchType = document.querySelector('#searchType');
+
+        let url = '/user-info/list?';
+        if (searchStr.value !== '') {
+            url += 'searchType=' + searchType.value + '&searchStr=' + searchStr.value;
+        }
+
+        xhr.open('GET', url);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    const list = JSON.parse(xhr.responseText);
+                    let html = '';
+                    for (const user of list) {
+                        html += '<tr>';
+                        html += '<td>' + user.uiNum + '</td>';
+                        html += '<td><a href="/user-info/view?uiNum=' + user.uiNum + '">' + user.uiName + '</a></td>';
+                        html += '<td>' + user.uiId + '</td>';
+                        html += '<td>' + user.uiBirth + '</td>';
+                        html += '<td>' + user.credat + '</td>';
+                        html += '</tr>';
+                    }
+                    document.querySelector('#tBody').innerHTML = html;
+                }
+            }
+        }
+        xhr.send();
+    }
+    window.addEventListener('load', loadFunc);
 </script>
+
 </body>
 </html>
-
-
-
-
