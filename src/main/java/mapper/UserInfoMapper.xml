@@ -22,7 +22,7 @@
 	</insert>
 	<update id="updateUserInfo">
 		UPDATE USER_INFO
-		SET UI_NAME=#{uiName}, UI_PWD=#{uiPwd}, UI_IMG_PATH=#{uiImgPath}, UI_DESC=#{uiDesc},
+		SET UI_NAME=#{uiName}, UI_ID=#{uiId}, UI_PWD=#{uiPwd}, UI_IMG_PATH=#{uiImgPath}, UI_DESC=#{uiDesc},
 		UI_BIRTH=#{uiBirth}, LMODAT=DATE_FORMAT(NOW(), '%Y%m%d'),
 		LMOTIM=DATE_FORMAT(NOW(), '%H%i%s'), ACTIVE=#{active} WHERE UI_NUM=#{uiNum}
 	</update>
