@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,45 +7,41 @@
 <title>Insert title here</title>
 </head>
 <body>
-    아이디 : <input type="text" id="uiId"><br>
-    이름 : <input type="text" id="uiName"><br>
-    비밀번호 : <input type="password" id="uiPwd"><br>
-    소개 : <textarea id="uiDesc"></textarea><br>
-    생년월일 : <input type="date" id="uiBirth"><br>
-    <button onclick="sendObj()">등록</button>
-    <script>
-    function sendObj() {
-        const param = {
-            uiId: document.querySelector('#uiId').value,
-            uiName: document.querySelector('#uiName').value,
-            uiPwd: document.querySelector('#uiPwd').value,
-            uiDesc: document.querySelector('#uiDesc').value,
-            uiBirth: document.querySelector('#uiBirth').value
-        }
+<h3>회원 등록</h3>
+<form>
+	<input type="text" name="uiId" placeholder="아이디"><br>
+	<input type="text" name="uiName" placeholder="이름"><br>
+	<input type="password" name="uiPwd" placeholder="비밀번호"><br>
+	<textarea name="uiDesc" placeholder="소개"></textarea><br>
+	<input type="date" name="uiBirth" placeholder="생년월일"><br>
+	<button type="button" onclick="addUser()">등록</button>
+	<button type="reset">취소</button>
+</form>
+<script>
 
-        const json = JSON.stringify(param);
-
-        const xhr = new XMLHttpRequest();
-
-        xhr.open('POST', '/user-info/insert');
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    const responseText = xhr.responseText;
-                    const jsonResponse = JSON.parse(responseText);
-
-                    if (jsonResponse.msg === '유저 등록 성공') {
-                        alert(jsonResponse.msg);
-                        location.href = jsonResponse.url;
-                    } else {
-                        alert(jsonResponse.msg);
-                    }
-                }
-            }
-        }
-        xhr.send(json);
-    }
-    </script>
+function addUser(){
+	const param = {
+			uiId : document.querySelector('input[name=uiId]').value,
+			uiName : document.querySelector('input[name=uiName]').value,
+			uiPwd : document.querySelector('input[name=uiPwd]').value,
+			uiDesc : document.querySelector('textarea[name=uiDesc]').value,
+			uiBirth : document.querySelector('input[name=uiBirth]').value,
+	}
+	
+	const json = JSON.stringify(param);
+	const xhr = new XMLHttpRequest();
+	xhr.open('POST','/user-info/insert');
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState === 4){
+			if(xhr.status===200){
+				console.log(xhr.responseText);
+				console.log(json);
+				
+			}
+		}
+	}
+	xhr.send(json);
+}
+</script>
 </body>
 </html>
